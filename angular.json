@@ -21,9 +21,12 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
+              "src/favicon.ico",
+              "src/assets",
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "output": "/assets/"
               }
             ],
             "styles": [
@@ -92,10 +95,16 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/jquery.easing/jquery.easing.min.js"
+            ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "59ebfcae-7e6d-4d58-9635-32260fc95d04"
   }
 }
