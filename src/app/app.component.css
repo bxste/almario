@@ -183,6 +183,27 @@
     }
   }
   
+  .classbox {
+    text-align: center;
+    margin-top: 40px;
+  }
+  
+  .download {
+    display: inline-block;
+    background-color: #242526; /* Tailwind's blue-800 */
+    color: #ffffff;
+    padding: 12px 24px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .download:hover {
+    background-color: #66696e; /* Tailwind's blue-700 */
+    transform: translateY(-2px);
+  }
   
   
   .mail-button {
