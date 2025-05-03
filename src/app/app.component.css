@@ -296,10 +296,9 @@ nav .wrapper {
   display: flex;
   justify-content: flex-end;
   list-style: none;
-  margin-left: auto; /* This pushes the nav to the right */
-  gap: 20px; /* Adds spacing between links */
+  margin-left: auto;
+  gap: 20px;
 }
-
 
 .nav-links li a {
   color: #f2f2f2;
@@ -315,34 +314,50 @@ nav .wrapper {
   background: #3A3B3C;
 }
 
-/* Mobile Menu Toggle */
-.menu-toggle {
+.btn {
   display: none;
   font-size: 28px;
   color: #f2f2f2;
   cursor: pointer;
 }
 
-/* Responsive Styles */
+/* Responsive */
 @media (max-width: 768px) {
+  .wrapper .btn {
+    display: block;
+  }
+
   .wrapper .nav-links {
-    position: absolute;
-    top: 70px;
-    right: 0;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 100%;
     background: #242526;
     flex-direction: column;
-    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    transition: right 0.3s ease;
+  }
+
+  #menu-btn:checked ~ .nav-links {
+    right: 0;
+  }
+
+  #menu-btn:checked ~ .menu-btn {
     display: none;
   }
 
-  .wrapper .nav-links.active {
-    display: flex;
-  }
-
-  .menu-toggle {
+  #menu-btn:checked ~ .nav-links .close-btn {
     display: block;
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    font-size: 30px;
   }
 }
+
 
 
   
@@ -386,41 +401,56 @@ nav .wrapper {
   #portfolio .portfolio-items {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 50px;
     padding-top: 10px;
   }
+  
   #portfolio .portfolio-item {
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 500px;
-    height: 400px;
+    width: 500%;
+    max-width: 400px;
+    height: auto;
     overflow: hidden;
-    text-align:left;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
   }
+  
   #portfolio .portfolio-item img {
     width: 100%;
     height: 300px;
     object-fit: cover;
-    transform-origin: center center;
-    transform: scale(1);
-    -o-object-fit: cover;
-      object-fit: cover;
-    transition: all 0.2s ease-out;
+    transition: transform 0.3s ease;
   }
-
+  
   #portfolio .portfolio-item img:hover {
-    transform: scale(1);
-    transform-origin: top center;
-    transform: scale(1.5);
+    transform: scale(1.1);
     border-radius: 25px;
   }
+  
   #portfolio .portfolio-item p {
     padding: 10px;
     background: #242526;
     color: #fff;
     font-weight: 300;
+    flex-grow: 1;
   }
+  
+  @media (min-width: 768px) {
+    #portfolio .portfolio-item {
+      max-width: 45%;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    #portfolio .portfolio-item {
+      max-width: 30%;
+    }
+  }
+  
   
   /* Media Queries */
   @media screen and (max-width: 970px) {
@@ -445,134 +475,118 @@ nav .wrapper {
 
 /* skills section styling */
 
+/* Base Styles - already in your code, preserved as-is */
 section .title {
-    position: relative;
-    text-align: center;
-    margin-bottom: 40px;
-    padding-bottom: 20px;
-    font-size: 36px;
-    font-weight: 600;
+  position: relative;
+  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  font-size: 36px;
+  font-weight: 600;
+}
 
-  }
-  
-  .skills .skills-content .column,
-  .contact .contact-content .column {
-    width: 100%;
-    margin-bottom: 35px;
-  }
 .max-width {
-    max-width: 1700px;
-    padding: 0 80px;
-    margin: auto;
-  }
-    .skills .skills-content .column {
-    width: calc(50% - 30px);
-  }
-  
-  .skills .skills-content .left .text {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-  
-  .skills .skills-content .left p {
-    text-align: justify;
-  }
-  
-  /* .skills .skills-content .left a {
-    display: inline-block;
-    background: #242526;
-    color: #fff;
-    font-size: 18px;
-    font-weight: 500;
-    padding: 8px 16px;
-    margin-top: 20px;
-    border-radius: 6px;
-    border: 2px solid #242526;
-    transition: all 0.3s ease;
-  } */
-  .download{
-    display: inline-block;
-    background: #242526;
-    color: #fff;
-    font-size: 18px;
-    font-weight: 500;
-    padding: 8px 16px;
-    margin-top: 20px;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-  }
-  
-  .skills .skills-content .left a:hover {
-    color: #242526;
-    background: none;
-  }
-  
-  .skills .skills-content .right .bars {
-    margin-bottom: 15px;
-  }
-  
-.about .about-content,
-.services .serv-content,
-.skills .skills-content,
-.contact .contact-content {
+  max-width: 1700px;
+  padding: 0 80px;
+  margin: auto;
+}
+
+.skills .skills-content {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: space-between;
+  width: 100%;
+  margin-bottom: -30px;
+  font-size: 19px;
 }
-  
-  .skills .skills-content .right span {
-    font-weight: 500;
-    font-size: 18px;
-  }
-  
-  .skills .skills-content .right .line {
-    height: 5px;
-    width: 100%;
-    background: lightgrey;
-    position: relative;
-  }
-  
-  .skills .skills-content .right .line::before {
-    content: "";
-    position: absolute;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background: #242526;
-  }
-  
-  .skills-content .right .html::before {
-    width: 70%;
-  }
-  
-  .skills-content .right .css::before {
-    width: 70%;
-  }
-  
-  .skills-content .right .js::before {
-    width: 70%;
-  }
-  
-  .skills-content .right .php::before {
-    width: 70%;
-  }
-  
-  .skills-content .right .mysql::before {
-    width: 80%;
+
+.skills .skills-content .column {
+  width: calc(50% - 30px);
+  margin-bottom: 35px;
+}
+
+.skills .skills-content .left .text {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.skills .skills-content .left p {
+  text-align: justify;
+}
+
+.skills .skills-content .right .bars {
+  margin-bottom: 15px;
+}
+
+.skills .skills-content .right span {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.skills .skills-content .right .line {
+  height: 5px;
+  width: 100%;
+  background: lightgrey;
+  position: relative;
+}
+
+.skills .skills-content .right .line::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: #242526;
+}
+
+.skills-content .right .html::before,
+.skills-content .right .css::before,
+.skills-content .right .js::before,
+.skills-content .right .php::before {
+  width: 70%;
+}
+
+.skills-content .right .mysql::before {
+  width: 80%;
+}
+
+.skills-content .right .database::before {
+  width: 60%;
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 991px) {
+  .max-width {
+    padding: 0 50px;
   }
 
-  .skills-content .right .database::before {
-    width: 60%;
-  }
-   .skills .skills-content{
+  .skills .skills-content .column {
     width: 100%;
-    margin-bottom: -30px;
   }
-  .skills .skills-content{
-    font-size: 19px;
+
+  .skills .skills-content {
+    flex-direction: column;
   }
+}
+
+@media (max-width: 600px) {
+  section .title {
+    font-size: 28px;
+  }
+
+  .skills .skills-content {
+    font-size: 16px;
+  }
+
+  .skills .skills-content .left .text {
+    font-size: 18px;
+  }
+
+  .skills .skills-content .right span {
+    font-size: 16px;
+  }
+}
 
   /* contact section styling */
 
